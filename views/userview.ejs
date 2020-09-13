@@ -1,0 +1,25 @@
+<%- include ('navbar.ejs') %>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-12 border-bottom">
+            <h1 class="page-header">Let's Travel</h1>
+                <small>Explore yourself which one make amaze you</small>
+            </h1>
+        </div>
+    </div>
+    <% items.forEach((item) => { %>
+        <div class="row mt-4 ml-5">
+            <div class="col-md-4">
+            <img class="img-responsive" src="/<%= item.image %>" width="350px" height="250px" alt="">
+            </div>
+            <div class="col-md-8">
+            <h3><%= item.title %></h3>
+            <% if(item){ var count = item.content.indexOf("."); %>
+                <p><%= item.content.slice(0,count) %></p>
+                <% } %>
+            <a class="btn btn-primary" href="/showdetail/<%= item._id %>">ReadMore <i class="fas fa-arrow-right"></i><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    <% }) %>
+</div>
+<br>

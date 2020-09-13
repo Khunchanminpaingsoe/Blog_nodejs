@@ -1,0 +1,9 @@
+<%- include ('sidebar.ejs') %>
+<div class="row col-lg-12 card">
+    <h4 class="ml-3 mt-3">Edit Category</h4>
+    <form action="/editcatpost/<%= data._id %>" method="POST" class="mt-3">
+      <label for="name" class="ml-5">Add New City</label>
+      <input type="text" id="name" name="name" value="<%= data.name %>">
+      <button type="submit" class="createbtn text-light ml-5"><i class="fas fa-pencil-alt"></i> Edit</button>
+    </form>
+  </div>

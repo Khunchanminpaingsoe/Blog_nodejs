@@ -1,0 +1,58 @@
+
+:root {
+    --primary: #770414;
+    --light: #ffffff;
+    --grey: #efefef;
+  }
+  
+  body {
+    font-family: 'Multi', san-serif;
+    font-weight: 300;
+    color: var(--primary);
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  .bg-primary {
+    background-color: var(--primary) !important ;
+  }
+
+  .bg-light {
+    background-color: var(--light) !important;
+  }
+  
+  #sidebar-containter {
+    min-height: 100vh;
+  }
+  
+  #sidebar-containter .logo {
+    padding: .875rem 1.25rem;
+  }
+  
+  #sidebar-containter .menu {
+    width: 13rem;
+  }
+
+  .btn-search {
+    right: 5px;
+  }
+
+  .createbtn {
+    background-color:#770414;
+  }
+
+  .trashbtn {
+    background-color: #770414;
+  }
+
+  .thead {
+    background-color: #770414;
+  }
+
+  .bg {
+    background-color: #770414;
+  }
+
+  

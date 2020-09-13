@@ -1,0 +1,62 @@
+<%- include ('sidebar.ejs') %>
+<div class="w-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="form-inline position-relative my-2 d-inline-block">
+      <input class="search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-search position-absolute" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Khunchan
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Subscription</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something</a>
+          </div>
+      </ul> 
+    </div>
+  </div>
+  </nav>
+    <div id="content" class="container-fluid">
+      <section class="py-2">
+      <div class="row card">
+          <h4 class="ml-3 mt-2">Create New Category</h4>
+        <form action="/addcat" method="POST" class="mt-2">
+          <label for="name" class="ml-4 text-dark">Add New City</label>
+          <input type="text" id="name" name="name" placeholder="Enter new city...">
+          <button type="submit" class="createbtn text-light ml-5"><i class="fas fa-plus-circle"></i>Create</button>
+        </form>
+      </div>
+      </section>
+      <div class="container">
+      <table class="table col-sm-6 card-body mt-2">
+        <thead class="thead text-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col" class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cats.forEach((data) => { %>
+          <tr>
+            <td><%= data.name %></td>
+            <td class="text-center">
+              <a href="/editcatget/<%= data._id %>" class="btn btn-primary"><i class="far fa-edit"></i></a>
+              <a href="/deletecat/<%= data._id %>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</div>
+</div>

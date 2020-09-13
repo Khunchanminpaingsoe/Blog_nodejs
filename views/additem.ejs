@@ -1,0 +1,120 @@
+<%- include ('sidebar.ejs') %>
+<div class="container">
+  <div class="modal fade col-md-12" id="additem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+<form enctype="multipart/form-data">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Enter title ...">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" class="form-control-file" id="image" name="image">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+            <select name="category" class="form-control">
+            <% cats.forEach(cat => { %>
+              <% if (cat._id === items.category) { %>
+                <option selected label="<%= cat.name %>" value="<%= cat._id %>">
+              <% } else { %>
+                <option label="<%= cat.name %>" value="<%= cat._id %>">
+              <% } %>
+            <% }) %>
+            </select>
+    </div>
+    </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+      </div>
+  </div>
+  <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </form>
+</div>
+</div>
+</div>
+
+<div class="container card mt-3">
+  <div class="container mt-2">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#additem">
+      <i class="fas fa-plus"></i> Add item 
+    </button>
+    </div>
+    <table class="table table-striped mt-3">
+        <thead class="thead">
+            <tr class="text-light">
+                <th>Category</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Content</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% items.forEach((item) => { %>
+            <tr>
+                <td><%= item.category.name %></td>
+                <td><%= item.title %></td>
+                <td><img class="responsive-img" src="/<%= item.image %>" width="50px" height="50px"></td>
+                <% if(item){ var count = item.content.indexOf("."); %>
+                <td><%= item.content.slice(0,count) %></td>
+                <% } %>
+                <td class="text-center">
+                    <a href="/edititem/<%= item._id %>" class="btn btn-primary"><i class="far fa-edit"></i></a>
+                </td>
+                <td>
+                    <a href="/deleteitem/<%= item._id %>" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <% }); %>        
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <% if (pages > 0) { %>
+        <ul class="pagination text-center">
+            <% if (current == 1) { %>
+                <li class="disabled"><a class="page-link">First</a></li>
+            <% } else { %>
+                <li class="page-item"><a class="page-link" href="/getitem/1">First</a></li>
+            <% } %>
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if (i == current) { %>
+                    <li class="active"><a class="page-link"><%= i %></a></li>
+                <% } else { %>
+                    <li class="page-item"><a class="page-link" href="/getitem/<%= i %>"><%= i %><a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (current == pages) { %>
+                <li class="disabled"><a class="page-link">Last</a></li>
+            <% } else { %>
+                <li class="page-item"><a class="page-link" href="/getitem/<%= pages %>">Last</a></li>
+            <% } %>
+        </ul>
+        <% } %>
+      </nav>
+  </div>  
+</div>
+
+  
+
+
